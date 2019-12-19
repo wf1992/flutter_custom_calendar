@@ -19,6 +19,11 @@ class CalendarConfiguration {
   int minYear;
   int maxYear;
 
+  //日历显示的前几天,后几天
+  int minDay;//新增：往前几天 都为正数
+  int maxDay;//新增：往后几天 都为正数
+  int startDayCompareWithToady;//新增:从哪天开始，默认是0  -1表示从昨天开始，1表示从明天开始
+
   //日历显示的最小年份的月份，最大年份的月份
   int minYearMonth;
   int maxYearMonth;
@@ -64,9 +69,9 @@ class CalendarConfiguration {
   OnMultiSelectOutOfSize multiSelectOutOfSize; //多选超出限制个数
 
   ObserverList<OnMonthChange> monthChangeListeners =
-      ObserverList<OnMonthChange>(); //保存多个月份监听的事件
+  ObserverList<OnMonthChange>(); //保存多个月份监听的事件
   ObserverList<OnWeekChange> weekChangeListeners =
-      ObserverList<OnWeekChange>(); //周视图切换
+  ObserverList<OnWeekChange>(); //周视图切换
 
   /**
    * 下面的信息不是配置的，是根据配置信息进行计算出来的
@@ -80,34 +85,37 @@ class CalendarConfiguration {
 
   CalendarConfiguration(
       {this.selectMode,
-      this.minYear,
-      this.maxYear,
-      this.minYearMonth,
-      this.maxYearMonth,
-      this.nowYear,
-      this.nowMonth,
-      this.minSelectYear,
-      this.minSelectMonth,
-      this.minSelectDay,
-      this.maxSelectYear,
-      this.maxSelectMonth,
-      this.maxSelectDay,
-      this.defaultSelectedDateList,
-      this.selectDateModel,
-      this.maxMultiSelectCount,
-      this.extraDataMap,
-      this.monthList,
-      this.weekList,
-      this.monthController,
-      this.weekController,
-      this.verticalSpacing,
-      this.itemSize,
-      this.showMode,
-      this.padding,
-      this.margin});
+        this.minYear,
+        this.maxYear,
+        this.minDay,
+        this.maxDay,
+        this.startDayCompareWithToady,
+        this.minYearMonth,
+        this.maxYearMonth,
+        this.nowYear,
+        this.nowMonth,
+        this.minSelectYear,
+        this.minSelectMonth,
+        this.minSelectDay,
+        this.maxSelectYear,
+        this.maxSelectMonth,
+        this.maxSelectDay,
+        this.defaultSelectedDateList,
+        this.selectDateModel,
+        this.maxMultiSelectCount,
+        this.extraDataMap,
+        this.monthList,
+        this.weekList,
+        this.monthController,
+        this.weekController,
+        this.verticalSpacing,
+        this.itemSize,
+        this.showMode,
+        this.padding,
+        this.margin});
 
   @override
   String toString() {
-    return 'CalendarConfiguration{selectMode: $selectMode, minYear: $minYear, maxYear: $maxYear, minYearMonth: $minYearMonth, maxYearMonth: $maxYearMonth, nowYear: $nowYear, nowMonth: $nowMonth, minSelectYear: $minSelectYear, minSelectMonth: $minSelectMonth, minSelectDay: $minSelectDay, maxSelectYear: $maxSelectYear, maxSelectMonth: $maxSelectMonth, maxSelectDay: $maxSelectDay, defaultSelectedDateList: $defaultSelectedDateList, maxMultiSelectCount: $maxMultiSelectCount, extraDataMap: $extraDataMap, monthList: $monthList, weekList: $weekList, monthController: $monthController, weekController: $weekController}';
+    return 'CalendarConfiguration{selectMode: $selectMode, minYear: $minYear, maxYear: $maxYear, minDay: $minDay, maxDay: $maxDay, startDayCompareWithToady: $startDayCompareWithToady, minYearMonth: $minYearMonth, maxYearMonth: $maxYearMonth, nowYear: $nowYear, nowMonth: $nowMonth, minSelectYear: $minSelectYear, minSelectMonth: $minSelectMonth, minSelectDay: $minSelectDay, maxSelectYear: $maxSelectYear, maxSelectMonth: $maxSelectMonth, maxSelectDay: $maxSelectDay, defaultSelectedDateList: $defaultSelectedDateList, maxMultiSelectCount: $maxMultiSelectCount, extraDataMap: $extraDataMap, monthList: $monthList, weekList: $weekList, monthController: $monthController, weekController: $weekController}';
   }
 }
