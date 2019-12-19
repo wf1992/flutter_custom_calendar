@@ -71,7 +71,7 @@ class CalendarController {
     DateTime now = DateTime(DateTime.now().year,DateTime.now().month,
         DateTime.now().day);
     DateTime beginDayCompareWithToady = now.add(new Duration(days: startDayCompareWithToady));
-    DateUtil.setDaysRange(preDay, nextDay,startDayCompareWithToady,beginDayCompareWithToady);
+    DateUtil.setDaysRange(preDay, nextDay,minDay,maxDay,startDayCompareWithToady,beginDayCompareWithToady);
 
     calendarConfiguration = CalendarConfiguration(
         selectMode: selectMode,
