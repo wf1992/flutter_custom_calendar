@@ -5,12 +5,58 @@ import 'package:flutter_custom_calendar/utils/LogUtil.dart';
  * 工具类
  */
 class DateUtil {
+
+  static int minDay;
+  static int maxDay;
+  static int startDayCompareWithToady;
+  static DateTime beginDayCompareWithToady;//默认是当天
+//  DateUtil(this.minDay,this.maxDay);
+//  @override
+//  String toString() {
+//    return 'DateUtil{minDay: $minDay, maxDay: $maxDay}';
+//  }
+//  DateUtil.fromJson(Map json) {
+//    minDay = json['minDay'];
+//    maxDay = json['maxDay'];
+//  }
+
+
+  static void setDaysRange(int cminDay,int cmaxDay,int cstartDayCompareWithToady,DateTime ctoday){
+    minDay = cminDay;
+    maxDay = cmaxDay;
+    beginDayCompareWithToady = ctoday;
+    startDayCompareWithToady = cstartDayCompareWithToady;
+  }
+
   /**
    * 判断一个日期是否是周末，即周六日
    */
   static bool isWeekend(DateTime dateTime) {
     return dateTime.weekday == DateTime.saturday ||
         dateTime.weekday == DateTime.sunday;
+  }
+
+  /** 检测是否在给定的天数范围内 */
+  static bool checkIsInSetDaysRange(DateTime targetTime) {
+    if(minDay == 99999 && maxDay == 99999){
+      return true;
+    }else{
+      int betweenDays = beginDayCompareWithToady.difference(targetTime).inDays;
+      if(betweenDays>=0){
+        if(betweenDays<=minDay){
+          return true;
+        }else {
+          return false;
+        }
+      }else {
+        betweenDays = -betweenDays;
+        if(betweenDays<=maxDay){
+          return true;
+        }else {
+          return false;
+        }
+      }
+    }
   }
 
   /**
@@ -110,8 +156,8 @@ class DateUtil {
   static List<DateModel> initCalendarForMonthView(
       int year, int month, DateTime currentDate, int weekStart,
       {DateModel minSelectDate,
-      DateModel maxSelectDate,
-      Map<DateModel, Object> extraDataMap}) {
+        DateModel maxSelectDate,
+        Map<DateModel, Object> extraDataMap}) {
     print('initCalendarForMonthView start');
     weekStart = DateTime.monday;
     //获取月视图其实偏移量
@@ -122,7 +168,7 @@ class DateUtil {
     LogUtil.log(
         TAG: "DateUtil",
         message:
-            "initCalendarForMonthView:$year年$month月,有$monthDayCount天,第一天的index为${mPreDiff}");
+        "initCalendarForMonthView:$year年$month月,有$monthDayCount天,第一天的index为${mPreDiff}");
 
 
     List<DateModel> result = new List();
@@ -194,7 +240,7 @@ class DateUtil {
     LogUtil.log(
         TAG: "DateUtil",
         message:
-            "getMonthViewLineCount:$year年$month月:有${((preIndex + monthDayCount) / 7).toInt() + 1}行");
+        "getMonthViewLineCount:$year年$month月:有${((preIndex + monthDayCount) / 7).toInt() + 1}行");
     return ((preIndex + monthDayCount) / 7).toInt() + 1;
   }
 
@@ -204,8 +250,8 @@ class DateUtil {
   static List<DateModel> initCalendarForWeekView(
       int year, int month, DateTime currentDate, int weekStart,
       {DateModel minSelectDate,
-      DateModel maxSelectDate,
-      Map<DateModel, Object> extraDataMap}) {
+        DateModel maxSelectDate,
+        Map<DateModel, Object> extraDataMap}) {
     List<DateModel> items = List();
 
     int weekDay = currentDate.weekday;
@@ -215,7 +261,7 @@ class DateUtil {
 
     for (int i = 1; i <= 7; i++) {
       DateModel dateModel =
-          DateModel.fromDateTime(firstDayOfWeek.add(Duration(days: i)));
+      DateModel.fromDateTime(firstDayOfWeek.add(Duration(days: i)));
 
       //判断是否在范围内
       if (dateModel.getDateTime().isAfter(minSelectDate.getDateTime()) &&
