@@ -9,6 +9,7 @@ class DateModel {
   int month;
   int day = 1;
 
+
   List<int> lunar = List(3);
 
 //  List<int> get lunar {
@@ -51,10 +52,17 @@ class DateModel {
 
   Object extraData; //自定义的额外数据
 
-  bool isInRange = false; //是否在范围内,比如可以实现在某个范围外，设置置灰的功能
+//  int minDay;
+//  int maxDay;
+
+  bool isInRange = true; //是否在范围内,比如可以实现在某个范围外，设置置灰的功能
+
+  //新增：是否在范围内,比如可以实现在某个范围外，设置置灰的功能
+  bool get isInSetDaysRange => DateUtil.checkIsInSetDaysRange(getDateTime());
+
   bool isSelected; //是否被选中，用来实现一些标记或者选择功能
   bool isCanClick =
-      true; //todo:是否可点击：设置范围外的日历不可点击，或者可以通过自定义拦截点击事件来设置true或者false
+  true; //todo:是否可点击：设置范围外的日历不可点击，或者可以通过自定义拦截点击事件来设置true或者false
   //是否是周末
   bool get isWeekend => DateUtil.isWeekend(getDateTime());
 
@@ -69,6 +77,8 @@ class DateModel {
   int get lunarMonth => lunar[1];
 
   int get lunarDay => lunar[2];
+
+
 
   @override
   String toString() {
@@ -87,7 +97,7 @@ class DateModel {
       ..month = dateTime.month
       ..day = dateTime.day;
     List<int> lunar =
-        LunarUtil.solarToLunar(dateModel.year, dateModel.month, dateModel.day);
+    LunarUtil.solarToLunar(dateModel.year, dateModel.month, dateModel.day);
     dateModel.lunar = lunar;
 
 //    将数据的初始化放到各个get方法里面进行操作，类似懒加载,不然很浪费
@@ -98,11 +108,11 @@ class DateModel {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is DateModel &&
-          runtimeType == other.runtimeType &&
-          year == other.year &&
-          month == other.month &&
-          day == other.day;
+          other is DateModel &&
+              runtimeType == other.runtimeType &&
+              year == other.year &&
+              month == other.month &&
+              day == other.day;
 
   @override
   int get hashCode => year.hashCode ^ month.hashCode ^ day.hashCode;
