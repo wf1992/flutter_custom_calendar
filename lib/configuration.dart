@@ -24,6 +24,9 @@ class CalendarConfiguration {
   int nextDay;//新增：往后几天 都为正数
   int startDayCompareWithToady;//新增:从哪天开始，默认是0  -1表示从昨天开始，1表示从明天开始
 
+  int minDay;//新增：最小的天数
+  int maxDay;//新增：最大的天数
+
   //日历显示的最小年份的月份，最大年份的月份
   int minYearMonth;
   int maxYearMonth;
@@ -89,6 +92,8 @@ class CalendarConfiguration {
         this.maxYear,
         this.preDay,
         this.nextDay,
+        this.minDay,
+        this.maxDay,
         this.startDayCompareWithToady,
         this.minYearMonth,
         this.maxYearMonth,
@@ -116,6 +121,6 @@ class CalendarConfiguration {
 
   @override
   String toString() {
-    return 'CalendarConfiguration{selectMode: $selectMode, minYear: $minYear, maxYear: $maxYear, preDay: $preDay, nextDay: $nextDay, startDayCompareWithToady: $startDayCompareWithToady, minYearMonth: $minYearMonth, maxYearMonth: $maxYearMonth, nowYear: $nowYear, nowMonth: $nowMonth, minSelectYear: $minSelectYear, minSelectMonth: $minSelectMonth, minSelectDay: $minSelectDay, maxSelectYear: $maxSelectYear, maxSelectMonth: $maxSelectMonth, maxSelectDay: $maxSelectDay, defaultSelectedDateList: $defaultSelectedDateList, maxMultiSelectCount: $maxMultiSelectCount, extraDataMap: $extraDataMap, monthList: $monthList, weekList: $weekList, monthController: $monthController, weekController: $weekController}';
+    return 'CalendarConfiguration{selectMode: $selectMode, minYear: $minYear, maxYear: $maxYear, preDay: $preDay, nextDay: $nextDay, minDay: $minDay, maxDay: $maxDay, startDayCompareWithToady: $startDayCompareWithToady, minYearMonth: $minYearMonth, maxYearMonth: $maxYearMonth, nowYear: $nowYear, nowMonth: $nowMonth, minSelectYear: $minSelectYear, minSelectMonth: $minSelectMonth, minSelectDay: $minSelectDay, maxSelectYear: $maxSelectYear, maxSelectMonth: $maxSelectMonth, maxSelectDay: $maxSelectDay, defaultSelectedDateList: $defaultSelectedDateList, maxMultiSelectCount: $maxMultiSelectCount, extraDataMap: $extraDataMap, monthList: $monthList, weekList: $weekList, monthController: $monthController, weekController: $weekController}';
   }
 }

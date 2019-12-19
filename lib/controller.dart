@@ -48,6 +48,8 @@ class CalendarController {
         int maxSelectYear = 2055,
         int maxSelectMonth = 12,
         int maxSelectDay = 30,
+        int minDay = 99999,//新增：最小的天数
+        int maxDay = 99999,//新增：最大的天数
         int preDay = 99999,//新增：往前几天 都为正数
         int nextDay = 99999,//新增：从startDayCompareWithToady时间往后几天 都为正数（
         // 包含当天，eg： 今天起往后3天 startDayCompareWithToady：0  nextDay：2 ）
@@ -81,6 +83,8 @@ class CalendarController {
         nowMonth: nowMonth,
         preDay: preDay,//新增
         nextDay: nextDay,//新增
+        minDay: minDay,//新增
+        maxDay: maxDay,//新增
         startDayCompareWithToady: startDayCompareWithToady,//新增
         minSelectYear: minSelectYear,
         minSelectMonth: minSelectMonth,

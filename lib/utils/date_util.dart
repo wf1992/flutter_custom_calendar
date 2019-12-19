@@ -8,12 +8,16 @@ class DateUtil {
 
   static int preDay;
   static int nextDay;
+  static int minDay;
+  static int maxDay;
   static int startDayCompareWithToady;
   static DateTime beginDayCompareWithToady;//默认是当天
 
-  static void setDaysRange(int cminDay,int cmaxDay,int cstartDayCompareWithToady,DateTime ctoday){
+  static void setDaysRange(int cpreDay,int cnextDay,int cminDay,int cmaxDay,int cstartDayCompareWithToady,DateTime ctoday){
     preDay = cminDay;
     nextDay = cmaxDay;
+    minDay = cminDay;
+    maxDay = cmaxDay;
     beginDayCompareWithToady = ctoday;
     startDayCompareWithToady = cstartDayCompareWithToady;
   }

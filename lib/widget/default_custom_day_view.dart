@@ -74,7 +74,6 @@ void defaultDrawNormal(DateModel dateModel, Canvas canvas, Size size) {
   TextPainter dayTextPainter = new TextPainter()
     ..text = TextSpan(
         text: dateModel.day.toString(),
-//        text: '我的测试',
         style: dateModel.isInSetDaysRange
             ? trueDayTextStyle
             : falseDayTextStyle)
