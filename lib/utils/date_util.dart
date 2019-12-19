@@ -6,24 +6,14 @@ import 'package:flutter_custom_calendar/utils/LogUtil.dart';
  */
 class DateUtil {
 
-  static int minDay;
-  static int maxDay;
+  static int preDay;
+  static int nextDay;
   static int startDayCompareWithToady;
   static DateTime beginDayCompareWithToady;//默认是当天
-//  DateUtil(this.minDay,this.maxDay);
-//  @override
-//  String toString() {
-//    return 'DateUtil{minDay: $minDay, maxDay: $maxDay}';
-//  }
-//  DateUtil.fromJson(Map json) {
-//    minDay = json['minDay'];
-//    maxDay = json['maxDay'];
-//  }
-
 
   static void setDaysRange(int cminDay,int cmaxDay,int cstartDayCompareWithToady,DateTime ctoday){
-    minDay = cminDay;
-    maxDay = cmaxDay;
+    preDay = cminDay;
+    nextDay = cmaxDay;
     beginDayCompareWithToady = ctoday;
     startDayCompareWithToady = cstartDayCompareWithToady;
   }
@@ -38,19 +28,19 @@ class DateUtil {
 
   /** 检测是否在给定的天数范围内 */
   static bool checkIsInSetDaysRange(DateTime targetTime) {
-    if(minDay == 99999 && maxDay == 99999){
+    if(preDay == 99999 && nextDay == 99999){
       return true;
     }else{
       int betweenDays = beginDayCompareWithToady.difference(targetTime).inDays;
       if(betweenDays>=0){
-        if(betweenDays<=minDay){
+        if(betweenDays<=preDay){
           return true;
         }else {
           return false;
         }
       }else {
         betweenDays = -betweenDays;
-        if(betweenDays<=maxDay){
+        if(betweenDays<=nextDay){
           return true;
         }else {
           return false;

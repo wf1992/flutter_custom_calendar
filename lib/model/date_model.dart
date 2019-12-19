@@ -52,8 +52,8 @@ class DateModel {
 
   Object extraData; //自定义的额外数据
 
-//  int minDay;
-//  int maxDay;
+//  int preDay;
+//  int nextDay;
 
   bool isInRange = true; //是否在范围内,比如可以实现在某个范围外，设置置灰的功能
 

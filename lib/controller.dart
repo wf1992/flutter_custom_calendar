@@ -48,9 +48,9 @@ class CalendarController {
         int maxSelectYear = 2055,
         int maxSelectMonth = 12,
         int maxSelectDay = 30,
-        int minDay = 99999,//新增：往前几天 都为正数
-        int maxDay = 99999,//新增：从startDayCompareWithToady时间往后几天 都为正数（
-        // 包含当天，eg： 今天起往后3天 startDayCompareWithToady：0  maxDay：2 ）
+        int preDay = 99999,//新增：往前几天 都为正数
+        int nextDay = 99999,//新增：从startDayCompareWithToady时间往后几天 都为正数（
+        // 包含当天，eg： 今天起往后3天 startDayCompareWithToady：0  nextDay：2 ）
         int startDayCompareWithToady = 0,//新增:从哪天开始，默认是0  -1表示从昨天开始，1表示从明天开始
         Set<DateTime> selectedDateTimeList = EMPTY_SET, //多选模式下，默认选中的item列表
         DateModel selectDateModel, //单选模式下，默认选中的item
@@ -69,7 +69,7 @@ class CalendarController {
     DateTime now = DateTime(DateTime.now().year,DateTime.now().month,
         DateTime.now().day);
     DateTime beginDayCompareWithToady = now.add(new Duration(days: startDayCompareWithToady));
-    DateUtil.setDaysRange(minDay, maxDay,startDayCompareWithToady,beginDayCompareWithToady);
+    DateUtil.setDaysRange(preDay, nextDay,startDayCompareWithToady,beginDayCompareWithToady);
 
     calendarConfiguration = CalendarConfiguration(
         selectMode: selectMode,
@@ -79,8 +79,8 @@ class CalendarController {
         maxYearMonth: maxYearMonth,
         nowYear: nowYear,
         nowMonth: nowMonth,
-        minDay: minDay,//新增
-        maxDay: maxDay,//新增
+        preDay: preDay,//新增
+        nextDay: nextDay,//新增
         startDayCompareWithToady: startDayCompareWithToady,//新增
         minSelectYear: minSelectYear,
         minSelectMonth: minSelectMonth,
