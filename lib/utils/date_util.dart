@@ -47,12 +47,42 @@ class DateUtil {
     }
 
     if(!isInType){// 设置了minDay和maxDay的情况
-      int betweenDays = beginDayCompareWithToady.difference(targetTime).inDays;
-      if(betweenDays>0){
-        return false;
-      }else {
-        return true;
+      if(selectType == 1){
+        if(minDay==99999){
+          int betweenDays = maxDateTime.difference(targetTime).inDays;
+          if(betweenDays<0){
+            return false;
+          }else {
+            return true;
+          }
+        }else {
+          int betweenDays = minDateTime.difference(targetTime).inDays;
+          if(betweenDays>0){
+            return false;
+          }else {
+            return true;
+          }
+        }
+
+      }else if(selectType == 2){
+        if(maxDay==99999){
+          int betweenDays = minDateTime.difference(targetTime).inDays;
+          if(betweenDays>0){
+            return false;
+          }else {
+            return true;
+          }
+        }else {
+          int betweenDays = maxDateTime.difference(targetTime).inDays;
+          if(betweenDays>0){
+            return false;
+          }else {
+            return true;
+          }
+        }
+
       }
+
 
     }else {//设置preDay和nextDay
       if(preDay == 99999 && nextDay == 99999){

@@ -202,15 +202,6 @@ class ItemContainerState extends State<ItemContainer> {
             TAG: this.runtimeType,
             message: "GestureDetector onTap: $dateModel}");
 
-        //不在给定时间范围内不可点击
-        if(!dateModel.isInSetDaysRange){
-          //多选回调
-          if (configuration.selectMode == CalendarConstants.MODE_MULTI_SELECT) {
-            configuration.multiSelectOutOfRange();
-          }
-          return;
-        }
-
         //范围外不可点击
         if (!dateModel.isInRange) {
           //多选回调

@@ -82,6 +82,7 @@ class CalendarController {
     if(!isInType){
       DateTime minDateTime = DateTime(minYear,minYearMonth, minDay);
       DateTime maxDateTime = DateTime(maxYear,maxYearMonth, maxDay);
+      print('selectType' + selectType.toString() +"=> "+minDateTime.toString()+"=> "+ maxDateTime.toString()+"minDay"+minDay.toString()+"maxDay"+maxDay.toString());
       DateUtil.setDaysRange(preDay, nextDay,minDay,maxDay,startDayCompareWithToady,
           beginDayCompareWithToady,minDateTime,maxDateTime,selectType);
     }else {
