@@ -32,25 +32,43 @@ class DateUtil {
 
   /** 检测是否在给定的天数范围内 */
   static bool checkIsInSetDaysRange(DateTime targetTime) {
-    if(preDay == 99999 && nextDay == 99999){
-      return true;
+    bool isInType = false;// 设置了minDay和maxDay的情况下：false  设置preDay和nextDay:true
+    if(minDay != 99999 || maxDay != 99999) {
+      isInType = false;
     }else{
+      isInType = true;
+    }
+
+    if(!isInType){// 设置了minDay和maxDay的情况
       int betweenDays = beginDayCompareWithToady.difference(targetTime).inDays;
-      if(betweenDays>=0){
-        if(betweenDays<=preDay){
-          return true;
-        }else {
-          return false;
-        }
+      if(betweenDays>0){
+        return false;
       }else {
-        betweenDays = -betweenDays;
-        if(betweenDays<=nextDay){
-          return true;
+        return true;
+      }
+
+    }else {//设置preDay和nextDay
+      if(preDay == 99999 && nextDay == 99999){
+        return true;
+      }else{
+        int betweenDays = beginDayCompareWithToady.difference(targetTime).inDays;
+        if(betweenDays>=0){
+          if(betweenDays<=preDay){
+            return true;
+          }else {
+            return false;
+          }
         }else {
-          return false;
+          betweenDays = -betweenDays;
+          if(betweenDays<=nextDay){
+            return true;
+          }else {
+            return false;
+          }
         }
       }
     }
+
   }
 
   /**
