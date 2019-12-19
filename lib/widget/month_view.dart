@@ -44,7 +44,7 @@ class _MonthViewState extends State<MonthView>
     extraDataMap = widget.configuration.extraDataMap;
 
     DateModel firstDayOfMonth =
-        DateModel.fromDateTime(DateTime(widget.year, widget.month, 1));
+    DateModel.fromDateTime(DateTime(widget.year, widget.month, 1));
     if (CacheData.getInstance().monthListCache[firstDayOfMonth]?.isNotEmpty ==
         true) {
       LogUtil.log(TAG: this.runtimeType, message: "缓存中有数据");
@@ -94,7 +94,7 @@ class _MonthViewState extends State<MonthView>
     LogUtil.log(TAG: this.runtimeType, message: "_MonthViewState build");
 
     CalendarProvider calendarProvider =
-        Provider.of<CalendarProvider>(context, listen: false);
+    Provider.of<CalendarProvider>(context, listen: false);
     CalendarConfiguration configuration =
         calendarProvider.calendarConfiguration;
 
@@ -201,6 +201,15 @@ class ItemContainerState extends State<ItemContainer> {
         LogUtil.log(
             TAG: this.runtimeType,
             message: "GestureDetector onTap: $dateModel}");
+
+        //不在给定时间范围内不可点击
+        if(!dateModel.isInSetDaysRange){
+          //多选回调
+          if (configuration.selectMode == CalendarConstants.MODE_MULTI_SELECT) {
+            configuration.multiSelectOutOfRange();
+          }
+          return;
+        }
 
         //范围外不可点击
         if (!dateModel.isInRange) {
