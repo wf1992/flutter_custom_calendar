@@ -12,14 +12,21 @@ class DateUtil {
   static int maxDay;
   static int startDayCompareWithToady;
   static DateTime beginDayCompareWithToady;//默认是当天
+  static DateTime minDateTime;//开始时间
+  static DateTime maxDateTime;//截止时间
+  static int selectType;//0:默认   1：开始时间   2：结束时间
 
-  static void setDaysRange(int cpreDay,int cnextDay,int cminDay,int cmaxDay,int cstartDayCompareWithToady,DateTime ctoday){
+  static void setDaysRange(int cpreDay,int cnextDay,int cminDay,int cmaxDay,int cstartDayCompareWithToady
+      ,DateTime ctoday,DateTime cminDateTime,DateTime cmaxDateTime ,int cselectType){
     preDay = cminDay;
     nextDay = cmaxDay;
     minDay = cminDay;
     maxDay = cmaxDay;
     beginDayCompareWithToady = ctoday;
     startDayCompareWithToady = cstartDayCompareWithToady;
+    minDateTime = cminDateTime;
+    maxDateTime = cmaxDateTime;
+    selectType = cselectType;
   }
 
   /**

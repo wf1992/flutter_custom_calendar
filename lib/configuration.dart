@@ -26,6 +26,7 @@ class CalendarConfiguration {
 
   int minDay;//新增：最小的天数
   int maxDay;//新增：最大的天数
+  int selectType;//新增
 
   //日历显示的最小年份的月份，最大年份的月份
   int minYearMonth;
@@ -94,6 +95,7 @@ class CalendarConfiguration {
         this.nextDay,
         this.minDay,
         this.maxDay,
+        this.selectType,
         this.startDayCompareWithToady,
         this.minYearMonth,
         this.maxYearMonth,
@@ -121,6 +123,6 @@ class CalendarConfiguration {
 
   @override
   String toString() {
-    return 'CalendarConfiguration{selectMode: $selectMode, minYear: $minYear, maxYear: $maxYear, preDay: $preDay, nextDay: $nextDay, minDay: $minDay, maxDay: $maxDay, startDayCompareWithToady: $startDayCompareWithToady, minYearMonth: $minYearMonth, maxYearMonth: $maxYearMonth, nowYear: $nowYear, nowMonth: $nowMonth, minSelectYear: $minSelectYear, minSelectMonth: $minSelectMonth, minSelectDay: $minSelectDay, maxSelectYear: $maxSelectYear, maxSelectMonth: $maxSelectMonth, maxSelectDay: $maxSelectDay, defaultSelectedDateList: $defaultSelectedDateList, maxMultiSelectCount: $maxMultiSelectCount, extraDataMap: $extraDataMap, monthList: $monthList, weekList: $weekList, monthController: $monthController, weekController: $weekController}';
+    return 'CalendarConfiguration{selectMode: $selectMode, minYear: $minYear, maxYear: $maxYear, preDay: $preDay, nextDay: $nextDay, minDay: $minDay, maxDay: $maxDay, selectType: $selectType, startDayCompareWithToady: $startDayCompareWithToady, minYearMonth: $minYearMonth, maxYearMonth: $maxYearMonth, nowYear: $nowYear, nowMonth: $nowMonth, minSelectYear: $minSelectYear, minSelectMonth: $minSelectMonth, minSelectDay: $minSelectDay, maxSelectYear: $maxSelectYear, maxSelectMonth: $maxSelectMonth, maxSelectDay: $maxSelectDay, defaultSelectedDateList: $defaultSelectedDateList, maxMultiSelectCount: $maxMultiSelectCount, extraDataMap: $extraDataMap, monthList: $monthList, weekList: $weekList, monthController: $monthController, weekController: $weekController}';
   }
 }

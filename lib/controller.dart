@@ -48,6 +48,7 @@ class CalendarController {
         int maxSelectYear = 2055,
         int maxSelectMonth = 12,
         int maxSelectDay = 30,
+        int selectType = 0,//新增：0:默认   1：开始时间   2：结束时间
         int minDay = 99999,//新增：最小的天数
         int maxDay = 99999,//新增：最大的天数
         int preDay = 99999,//新增：往前几天 都为正数
@@ -71,7 +72,21 @@ class CalendarController {
     DateTime now = DateTime(DateTime.now().year,DateTime.now().month,
         DateTime.now().day);
     DateTime beginDayCompareWithToady = now.add(new Duration(days: startDayCompareWithToady));
-    DateUtil.setDaysRange(preDay, nextDay,minDay,maxDay,startDayCompareWithToady,beginDayCompareWithToady);
+
+    bool isInType = false;// 设置了minDay和maxDay的情况下：false  设置preDay和nextDay:true
+    if(minDay != 99999 || maxDay != 99999) {
+      isInType = false;
+    }else{
+      isInType = true;
+    }
+    if(!isInType){
+      DateTime minDateTime = DateTime(minYear,minYearMonth, minDay);
+      DateTime maxDateTime = DateTime(maxYear,maxYearMonth, maxDay);
+      DateUtil.setDaysRange(preDay, nextDay,minDay,maxDay,startDayCompareWithToady,
+          beginDayCompareWithToady,minDateTime,maxDateTime,selectType);
+    }else {
+      DateUtil.setDaysRange(preDay, nextDay,minDay,maxDay,startDayCompareWithToady,beginDayCompareWithToady,null,null,selectType);
+    }
 
     calendarConfiguration = CalendarConfiguration(
         selectMode: selectMode,
@@ -85,6 +100,7 @@ class CalendarController {
         nextDay: nextDay,//新增
         minDay: minDay,//新增
         maxDay: maxDay,//新增
+        selectType: selectType,//新增
         startDayCompareWithToady: startDayCompareWithToady,//新增
         minSelectYear: minSelectYear,
         minSelectMonth: minSelectMonth,
