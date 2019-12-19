@@ -18,8 +18,8 @@ class DateUtil {
 
   static void setDaysRange(int cpreDay,int cnextDay,int cminDay,int cmaxDay,int cstartDayCompareWithToady
       ,DateTime ctoday,DateTime cminDateTime,DateTime cmaxDateTime ,int cselectType){
-    preDay = cminDay;
-    nextDay = cmaxDay;
+    preDay = cpreDay;
+    nextDay = cnextDay;
     minDay = cminDay;
     maxDay = cmaxDay;
     beginDayCompareWithToady = ctoday;
